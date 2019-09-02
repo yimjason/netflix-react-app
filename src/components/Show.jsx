@@ -9,7 +9,7 @@ class Show extends Component {
 		this.state = {
 			show: props.show,
 			type: props.type,
-			toggle: false
+			hover: false
 		}
 	}
  
@@ -23,19 +23,19 @@ class Show extends Component {
   }
 
   mouseEnter = () => {
-  	this.setState({toggle: true});	  	
+  	this.setState({hover: true});	  	
   }
 
   mouseLeave = () => {
-  	this.setState({toggle: false});	  	
+  	this.setState({hover: false});	  	
   }
 
 	render() { 
-		let toggle = this.state.toggle ? 'show' : 'hide';
+		let toggle = this.state.hover ? 'show' : 'hide';
 		let button = this.state.type === 'mylist' ? 
-			(<button className={"btn btn-danger "+toggle} 
+			(<button className={"btn btn-danger "+toggle}
 				onClick={ () => this.removeFromMyList() }>&minus;</button>) : 
-			(<button className={"btn btn-success "+toggle} 
+			(<button className={"btn btn-success "+toggle}
 				onClick={ () => this.addToMyList() }>&#43;</button>);
 		return (
 			<div className="Show" onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave} >
@@ -48,11 +48,7 @@ class Show extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
-  
-});
-
-export default connect(mapStateToProps, { addShowToMyList, removeShowFromMyList, addShowToRecom })(Show);
+export default connect(null, { addShowToMyList, removeShowFromMyList, addShowToRecom })(Show);
 
 
 

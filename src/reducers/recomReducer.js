@@ -12,25 +12,15 @@ Array.prototype.have = function(item){
   return result;
 };
 
-const initialState = {
-  items: [],
-  item: {}
-};
-
-export default function(state = initialState, action) {
+export default function(state = [], action) {
   switch (action.type) {
     case GET_RECOM:
-      return {
-        ...state,
-        items: action.payload
-      };
+      state = action.data;
+      return state;
     case ADD_SHOW_TO_RECOM:
-      var item = action.payload;
-      if(!state.items.have(item)){ state.items.unshift(item); }          
-      return {
-        ...state,
-        item: item
-      };
+      var item = action.data;
+      if(!state.have(item)){ state.unshift(item); }          
+      return [...state];
     default:
       return state;
   }

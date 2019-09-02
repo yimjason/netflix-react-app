@@ -6,7 +6,7 @@ export const getMyList = () => dispatch => {
     .then(data =>
       dispatch({
         type: GET_MYLIST,
-        payload: data
+        data: data
       })
     );
 };
@@ -14,13 +14,13 @@ export const getMyList = () => dispatch => {
 export const addShowToMyList = obj => dispatch => {
   dispatch({
     type: ADD_SHOW_TO_MYLIST,
-    payload: obj
+    data: obj
   });
 };
 
 export const removeShowFromMyList = obj => dispatch => {
   dispatch({
     type: REMOVE_SHOW_FROM_MYLIST,
-    payload: obj
+    data: obj
   });
 };

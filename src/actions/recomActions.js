@@ -6,7 +6,7 @@ export const getRecom = () => dispatch => {
     .then(data =>
       dispatch({
         type: GET_RECOM,
-        payload: data
+        data: data
       })
     );
 };
@@ -14,7 +14,7 @@ export const getRecom = () => dispatch => {
 export const addShowToRecom = obj => dispatch => {
   dispatch({
     type: ADD_SHOW_TO_RECOM,
-    payload: obj
+    data: obj
   });
 };
 

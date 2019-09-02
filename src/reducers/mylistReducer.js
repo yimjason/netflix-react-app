@@ -12,36 +12,21 @@ Array.prototype.have = function(item){
   return result;
 };
 
-const initialState = {
-  items: [],
-  item: {}
-};
-
-export default function(state = initialState, action) {
+export default function(state = [], action) {
   switch (action.type) {
     case GET_MYLIST:
-      return {
-        ...state,
-        items: action.payload
-      };
+      state = action.data;
+      return state;
     case ADD_SHOW_TO_MYLIST:
-      var item = action.payload;
-      if(!state.items.have(item)){ state.items.unshift(item); }      
-      return {
-        ...state,
-        item: item
-      };
-    case REMOVE_SHOW_FROM_MYLIST:      
-      let items = state.items;
-      item = action.payload;
-      items = items.filter( (_item) => {
+      var item = action.data;
+      if(!state.have(item)){ state.unshift(item); }
+      return [...state];
+    case REMOVE_SHOW_FROM_MYLIST:            
+      item = action.data;
+      state = state.filter( (_item) => {
         return _item.id !== item.id;
-      } );  
-      state.items = items;
-      return {
-        ...state,
-        item: action.payload
-      };
+      } );
+      return state;
     default:
       return state;
   }

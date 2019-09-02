@@ -15,6 +15,9 @@ class Home extends Component {
     const myListItems = this.props.mylist.map( show => (    		    	
       <Show key={show.id} show={show} type={"mylist"}></Show>      
     ));
+    const myListTitles = this.props.mylist.map( show => (              
+      <p key={show.id}>{show.title}</p>
+    ));
     const recomItems = this.props.recom.map( show => (    		    	      
       <Show key={show.id} show={show} type={"recom"}></Show>      
     ));    
@@ -28,6 +31,10 @@ class Home extends Component {
 	        <h3>Recommendations</h3>
 	        {recomItems}
 	      </section>  
+        <section>
+          <h3>On My List</h3>
+          {myListTitles}
+        </section>
       </div>
     );
   }
@@ -41,9 +48,8 @@ Home.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  mylist: state.mylist.items,
-  recom: state.recom.items,
-  show: state.mylist.item
+  mylist: state.mylist,
+  recom: state.recom
 });
 
 export default connect(mapStateToProps, { getMyList, getRecom })(Home);
